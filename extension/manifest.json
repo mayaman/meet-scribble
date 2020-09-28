@@ -1,0 +1,30 @@
+{
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA11YppTmOkyu8psMxsTPOmcrGN7Tae7PPLEHDI1dqcSe9AybYW8PIJIXZVvJm4bhoVDPnWbTkouot7Ih7EfBaT3vYUrUeLNkkTGkaeF6BplFWOqdlv0CfNEp8FPizFfYC/haq0Y0FvIDptYE7xpT1duKKIbflwxLTqlpCvvSDWSNrgpNEVo9B/V+yWGL174uvJURcKhM/ikbvu30R/vsyILNdmqnqX/GHXZ1IvtdDm2mIxPLYz+WBa+OS+MBmBaEE0XahRTuY6v/rmDz4YLsX/yNrZOPPkLI6aSVL7jCVkuKzymPaNpX2T8dyorckO2v7NunMdyYNLWKO4Gtt8xrfNwIDAQAB",
+    "name": "Scribbler",
+    "description": "Fidget scribbler for Google Meet",
+    "homepage_url": "https://meet.google.com/",
+    "version": "0.0.1",
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://meet.google.com/*",
+                "https://meet-preprod.corp.google.com/*",
+                "https://preprod.meet.sandbox.google.com/*"
+            ],
+            "js": [
+                "build/inject.bundle.js"
+            ],
+            "run_at": "document_idle",
+            "all_frames": false
+        }
+    ],
+    "web_accessible_resources": [
+        "build/content.bundle.js"
+    ],
+    "manifest_version": 2
+}
