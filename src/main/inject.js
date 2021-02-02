@@ -8,7 +8,6 @@
  * @param  {string} text=''
  */
 export function injectScript(file_path, tag = 'html', type = 'script', text = '') {
-
     var node = document.getElementsByTagName(tag)[0];
     var tag_type = type == 'link' ? 'link' : 'script';
     var script = document.createElement(tag_type);
@@ -30,4 +29,14 @@ export function injectScript(file_path, tag = 'html', type = 'script', text = ''
         script.innerHTML = text;
     }
     node.appendChild(script);
+
+}
+
+export function injectImage(file_path) {
+    let img = new Image();
+    img.src = file_path;
+    img.id = 'icon-image';
+    img.style.display = 'none';
+    let node = document.body;
+    node.appendChild(img);
 }

@@ -1,7 +1,7 @@
 {
   "name": "scribbler",
   "version": "1.0.0",
-  "description": "Fidget scribbler for meet",
+  "description": "Scribble around on your Google Meet video calls",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

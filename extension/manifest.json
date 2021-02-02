@@ -1,14 +1,24 @@
 {
-    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA11YppTmOkyu8psMxsTPOmcrGN7Tae7PPLEHDI1dqcSe9AybYW8PIJIXZVvJm4bhoVDPnWbTkouot7Ih7EfBaT3vYUrUeLNkkTGkaeF6BplFWOqdlv0CfNEp8FPizFfYC/haq0Y0FvIDptYE7xpT1duKKIbflwxLTqlpCvvSDWSNrgpNEVo9B/V+yWGL174uvJURcKhM/ikbvu30R/vsyILNdmqnqX/GHXZ1IvtdDm2mIxPLYz+WBa+OS+MBmBaEE0XahRTuY6v/rmDz4YLsX/yNrZOPPkLI6aSVL7jCVkuKzymPaNpX2T8dyorckO2v7NunMdyYNLWKO4Gtt8xrfNwIDAQAB",
-    "name": "Scribbler",
-    "description": "Fidget scribbler for Google Meet",
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiUNr61rs72TMT2/elcSpK02XSG01bbkj7URFrk2369DGedpfoP9YKrLGI3BxdkQQFNr2RnmQSpWNQX2g7VUKWmhtY/jsrecvG8mtqWeK04DFTM1GpJ12GRVZ+7cpxS3clVXTLJ0tQnSFA1m4RTCeyHTsvCcvwui5FfcVgJKGWlBHJ9xb5TnUdxZb41ra/WrB0hFjoF2VjP154x/m+t9V7TQxYOEDstz0hSELVoZ13Z7Qd38jlX/ZmmT9C3mo3TA1kO9PdMZS6kT+VaAKAr8qWJbjVMArh9BhxbUSOBbbInJzeBFtBMqbwlulc5aGdpGNifkE4l/8tt+aFH7sFWp0wwIDAQAB",
+    "name": "Meet Scribble",
+    "description": "Scribble around on your Google Meet video calls",
     "homepage_url": "https://meet.google.com/",
-    "version": "0.0.1",
+    "version": "0.0.2",
+    "browser_action": {
+        "default_icon": "icons/icon128.png",
+        "default_title": "Meet Scribble",
+        "default_popup": "popup/index.html"
+    },
     "icons": {
         "16": "icons/icon16.png",
         "48": "icons/icon48.png",
         "128": "icons/icon128.png"
     },
+    "web_accessible_resources": [
+        "build/content.bundle.js",
+        "images/*.png",
+        "icons/icon.png"
+    ],
     "content_scripts": [
         {
             "matches": [
@@ -19,12 +29,12 @@
             "js": [
                 "build/inject.bundle.js"
             ],
+            "css": [
+                "static/style.css"
+            ],
             "run_at": "document_idle",
             "all_frames": false
         }
-    ],
-    "web_accessible_resources": [
-        "build/content.bundle.js"
     ],
     "manifest_version": 2
 }
