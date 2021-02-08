@@ -29,26 +29,28 @@ let currentColor = '#b0f2ff';
 let mode = 'pressToDraw';
 const modeOptions = [
     {
-        name: 'LINE',
+        name: '𝕃𝕀ℕ𝔼',
         value: 'pressToDraw'
     },
     {
-        name: 'DOTS',
+        name: 'ⓓⓞⓣⓢ',
         value: 'clickToDraw'
     },
     {
-        name: 'EMOJIS',
+        name: '𝐸𝑀🍑𝒥ℹ️𝒮💞',
         value: 'alwaysDraw'
     }
 ]
 
 const emojiOptions = {
-    blue: ["🦋", "🧢", "🐬", "🫐"],
-    pink: ["💗", "🐷", "💞", "🌸", "💘"],
-    orange: ["🍊", "🍑"],
-    green: ["🍏", "🎾"]
+    blue: ["🦋", "🌀", "💎", "🧢", "❄️", "🐬", "🫐", "💙", "🐳", "💧"],
+    pink: ["💗", "🌺", "💞", "🌸", "🎀"],
+    orange: ["🍊", "🔥", "🍑", "🧡", "🦀", "💥", "✴️"],
+    green: ["🍏", "✳️", "🎾", "♻️", "🌱", "🥝", "💚"]
 }
 let emojiCounter = 0;
+currentEmojis = emojiOptions['blue'];
+
 
 
 function init() {
@@ -104,9 +106,9 @@ function setupDrawing() {
     mainButton.id = "main-button"
     mainButton.addEventListener('click', toggleOptions);
     mainButton.innerHTML = '🖍';
-    let ogScribbleImage = document.getElementById('icon-image');
-    let scribbleImage = ogScribbleImage.cloneNode();
-    console.log(scribbleImage);
+    // let ogScribbleImage = document.getElementById('icon-image');
+    // let scribbleImage = ogScribbleImage.cloneNode();
+    // console.log(scribbleImage);
     // mainButton.append(scribbleImage);
     settingsDiv.appendChild(mainButton);
 
@@ -118,8 +120,8 @@ function setupDrawing() {
 
     // CLEAR BUTTON
     optionsDiv.id = "options-container";
-    createButton('♻️ / double click', 20, clearCanvas, optionsDiv);
-    // createButton('DOWNLOAD', 36, downloadCanvas, optionsDiv);
+    createButton('ℂ𝕃𝔼𝔸ℝ <br> (double click)', 32, clearCanvas, optionsDiv, 'clear-button');
+    // createButton('DOWNLOAD', 80, downloadCanvas, optionsDiv);
     settingsDiv.appendChild(optionsDiv);
 
     // MODE SELECTOR
@@ -170,12 +172,13 @@ function setupDrawing() {
     greatGrandparentElt.parentElement.parentElement.parentElement.parentElement.appendChild(drawingDiv); // adds the canvas to the body element
 }
 
-function createButton(text, yPos, clickFunction, parentDiv) {
+function createButton(text, yPos, clickFunction, parentDiv, id) {
     const newButton = document.createElement('button');
     newButton.innerHTML = text;
     newButton.addEventListener('click', clickFunction);
     newButton.style.top = yPos + 'px';
     newButton.classList.add('scribble-button');
+    newButton.id = id;
     parentDiv.appendChild(newButton);
 }
 
@@ -185,12 +188,12 @@ function createColorButton(colorString, leftPos, parentDiv, colorKey) {
     newButton.classList.add('color-button');
     newButton.style.background = colorString;
     newButton.style.left = leftPos + 'px';
-    // if (colorString == '#b0f2ff') {
-    //     newButton.style.opacity = 1.0;
+    if (colorKey == 'blue') {
+        newButton.style.borderStyle = 'solid';
 
-    // } else {
-    //     newButton.style.opacity = 0.5;
-    // }
+    } else {
+        newButton.style.borderStyle = 'dotted';
+    }
 
     newButton.id = leftPos;
     parentDiv.appendChild(newButton);
@@ -201,13 +204,12 @@ function createColorButton(colorString, leftPos, parentDiv, colorKey) {
         currentColor = colorString;
         let allColors = document.getElementsByClassName('color-button');
         currentEmojis = emojiOptions[colorKey];
-        console.log(currentEmojis);
         emojiCounter = 0;
-        // for (let i = 0; i < allColors.length; i++) {
-        //     const currentColorButton = allColors[i];
-        //     currentColorButton.style.opacity = 0.5;
-        // }
-        // e.target.style.opacity = 1.0;
+        for (let i = 0; i < allColors.length; i++) {
+            const currentColorButton = allColors[i];
+            currentColorButton.style.borderStyle = 'dotted';
+        }
+        e.target.style.borderStyle = 'solid';
     });
 }
 
@@ -258,10 +260,6 @@ function clearCanvas() {
     ctx.fillStyle = '#0000001A'
     ctx.fillRect(0, 0, canv.width, canv.height);
     isDrawing = false;
-    if (mode == 'alwaysDraw') {
-        ctx.beginPath();
-        ctx.moveTo(mousePos.x, mousePos.y);
-    }
 }
 
 function downloadCanvas() {
@@ -285,16 +283,14 @@ function mouseMove(e) {
             ctx.lineTo(mousePos.x, mousePos.y);
             ctx.stroke();
         } else if (mode == 'clickToDraw') {
-            let shapeSize = 10;
+            let shapeSize = 8;
             ctx.fillStyle = currentColor;
-            // ctx.fillRect(mousePos.x - shapeSize / 2, mousePos.y - shapeSize / 2, shapeSize, shapeSize);
-
             ctx.beginPath();
             ctx.arc(mousePos.x, mousePos.y, shapeSize, 0, 2 * Math.PI);
             ctx.stroke();
             ctx.fill();
         } else if (mode == 'alwaysDraw') {
-            let fontSize = 36;
+            let fontSize = 28;
             ctx.font = fontSize + "px Verdana";
             ctx.fillStyle = currentColor;
             ctx.fillText(currentEmojis[emojiCounter], mousePos.x - fontSize / 2, mousePos.y + fontSize / 4);
@@ -308,14 +304,6 @@ function mouseUp(e) {
     if (isDrawing) {
         isDrawing = false;
     }
-
-    // CLICK TO DRAW CODE
-    // isDrawing = !isDrawing;
-    // if (isDrawing) {
-    //     let mousePos = fixPosition(e, canv);
-    //     ctx.beginPath();
-    //     ctx.moveTo(mousePos.x, mousePos.y);
-    // }
 }
 
 init();

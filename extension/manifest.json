@@ -1,9 +1,9 @@
 {
     "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiUNr61rs72TMT2/elcSpK02XSG01bbkj7URFrk2369DGedpfoP9YKrLGI3BxdkQQFNr2RnmQSpWNQX2g7VUKWmhtY/jsrecvG8mtqWeK04DFTM1GpJ12GRVZ+7cpxS3clVXTLJ0tQnSFA1m4RTCeyHTsvCcvwui5FfcVgJKGWlBHJ9xb5TnUdxZb41ra/WrB0hFjoF2VjP154x/m+t9V7TQxYOEDstz0hSELVoZ13Z7Qd38jlX/ZmmT9C3mo3TA1kO9PdMZS6kT+VaAKAr8qWJbjVMArh9BhxbUSOBbbInJzeBFtBMqbwlulc5aGdpGNifkE4l/8tt+aFH7sFWp0wwIDAQAB",
     "name": "Meet Scribble",
-    "description": "Scribble around on your Google Meet video calls",
+    "description": "Scribble is a Chrome extension that lets you doodle, draw, and scribble on your browser while on a Meet call.",
     "homepage_url": "https://meet.google.com/",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "browser_action": {
         "default_icon": "icons/icon128.png",
         "default_title": "Meet Scribble",
@@ -17,7 +17,8 @@
     "web_accessible_resources": [
         "build/content.bundle.js",
         "images/*.png",
-        "icons/icon.png"
+        "icons/icon.png",
+        "icons/crayon.png"
     ],
     "content_scripts": [
         {
